@@ -1,0 +1,86 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+<link rel="Bookmark" href="/favicon.ico" >
+<link rel="Shortcut Icon" href="/favicon.ico" />
+
+<link rel="stylesheet" type="text/css" href="static/h-ui/css/H-ui.min.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/H-ui.admin.css" />
+<link rel="stylesheet" type="text/css" href="static/Hui-iconfont/1.0.8/iconfont.css" />
+<link rel="stylesheet" type="text/css" href="static/h-ui.admin/css/style.css" />
+<
+<title>车辆列表</title>
+</head>
+<body>
+<nav class="breadcrumb"><i class="Hui-iconfont">&#xe67f;</i> 首页 <span class="c-gray en">&gt;</span> 产品列表 <a class="btn btn-success radius r" style="line-height:1.6em;margin-top:3px" href="javascript:location.replace(location.href);" title="刷新" ><i class="Hui-iconfont">&#xe68f;</i></a></nav>
+<div class="page-container">
+
+	<table class="table table-border table-bordered table-bg">
+		<thead>
+			<tr>
+				<th scope="col" colspan="9">产品列表</th>
+			</tr>
+			<tr class="text-c">
+				<th width="150">车辆编号</th>
+				<th width="150">品牌名</th>
+				<th width="150">车系名</th>
+				<th width="150">上市时间</th>
+				<th width="150">颜色</th>
+				<th width="150">车型级别</th>
+				<th width="150">车身型式</th>
+				<th width="150">车身尺寸</th>
+				<th width="150">综合耗油</th>
+				<th width="150">动力类型</th>
+				<th width="150">环保标准</th>
+				<th width="150">发动机</th>
+				<th width="150">驱动及变速箱</th>
+				<th width="150">最大功率、最大扭矩</th>
+				<th width="150">保修政策</th>
+				<th width="150">厂商指导价</th>
+				<th width="150">产品在售状态</th>
+				<th width="150">厂商ID</th>
+				<th width="150">厂商名称</th>
+				<th width="150">备注</th>
+			</tr>
+		</thead>
+		<tbody id="list">
+
+
+		</tbody>
+	</table>
+</div>
+<!--_footer 作为公共模版分离出去-->
+<script type="text/javascript" src="js/jquery-3.4.1.min.js"></script>
+<script type="text/javascript" src="static/h-ui/js/H-ui.min.js"></script>
+<script type="text/javascript" src="static/h-ui.admin/js/H-ui.admin.js"></script>
+
+
+<script type="text/javascript">
+
+    $(()=>{
+	    $.ajax({
+			url:"motorcycles",
+			dataType: "json",
+			success:function (data) {
+			    console.log(data)
+                data.forEach(motorcycle=>{
+                    let $tr=$(`<tr class="text-c">
+				<td>${motorcycle.id}</td><td>${motorcycle.brand}</td><td>${motorcycle.type==null?'':motorcycle.type}</td><td>${motorcycle.uptime==null?'':motorcycle.uptime}</td><td>${motorcycle.color==null?'':motorcycle.color}</td>
+				<td>${motorcycle.level==null?'':motorcycle.level}</td><td>${motorcycle.body==null?'':motorcycle.body}</td><td>${motorcycle.size==null?'':motorcycle.size}</td><td>${motorcycle.fuel==null?'':motorcycle.fuel}</td><td>${motorcycle.power==null?'':motorcycle.power}</td>
+				<td>${motorcycle.green==null?'':motorcycle.green}</td><td>${motorcycle.engine==null?'':motorcycle.engine}</td><td>${motorcycle.gearbox==null?'':motorcycle.gearbox}</td><td>${motorcycle.carw==null?'':motorcycle.carw}</td><td>${motorcycle.repair==null?'':motorcycle.repair}</td>
+				<td>${motorcycle.price==null?'':motorcycle.price}</td><td>${motorcycle.state==null?'':motorcycle.state}</td><td>${motorcycle.fid==null?'':motorcycle.fid}</td><td>${motorcycle.fname==null?'':motorcycle.fname}</td><td>${motorcycle.remark==null?'':motorcycle.remark}</td>
+			</tr>`)
+                    $("#list").append($tr)
+				})
+            }
+		})
+	})
+
+</script>
+</body>
+</html>
